@@ -18,12 +18,13 @@ public class ReverseQuestIterator implements QuestIterator {
     @Override
     public boolean hasNext() {
         // TODO: return true while the cursor still points at an unread quest.
-        return false;
+        return cursor >= 0;
     }
 
     @Override
     public Quest next() {
         // TODO: return the current quest and move the cursor backward.
-        return null;
+        if (!hasNext()) return null;
+        return snapshot.get(cursor--);
     }
 }
