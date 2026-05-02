@@ -1,6 +1,8 @@
 package com.narxoz.rpg;
 
 import com.narxoz.rpg.combatant.Hero;
+import com.narxoz.rpg.council.CouncilEngine;
+import com.narxoz.rpg.council.CouncilRunResult;
 import com.narxoz.rpg.guild.*;
 import com.narxoz.rpg.quest.*;
 
@@ -45,5 +47,7 @@ public class Main {
         // 4. Iterate the quest log with at least 2 different QuestIterator implementations.
         // 5. Dispatch coordinating messages through the mediator during quest planning.
         // 6. Run the CouncilEngine and print a final CouncilRunResult.
+        CouncilEngine engine = new CouncilEngine();
+        CouncilRunResult result = engine.runCouncil(heroes, questLog, hall);
     }
 }
