@@ -47,7 +47,17 @@ public class Main {
         // 4. Iterate the quest log with at least 2 different QuestIterator implementations.
         // 5. Dispatch coordinating messages through the mediator during quest planning.
         // 6. Run the CouncilEngine and print a final CouncilRunResult.
+        System.out.println("\n--- Starting Council Session ---");
         CouncilEngine engine = new CouncilEngine();
         CouncilRunResult result = engine.runCouncil(heroes, questLog, hall);
+
+        System.out.println("\n--- Council Run Result ---");
+        System.out.println("Quests Traversed: " + result.getQuestsTraversed());
+        System.out.println("Messages Routed: " + result.getMessagesRouted());
+        System.out.println("Members Notified: " + result.getMembersNotified());
+
+        System.out.println("\n--- Live Coordination Demo ---");
+        scout.reportRoute("scouting", "North path is blocked by a troll.");
+        captain.issueOrder("orders", "All units prepare for battle!");
     }
 }
