@@ -18,6 +18,7 @@ public class Captain extends GuildMember {
     @Override
     public void receive(String topic, GuildMember from, String payload) {
         // TODO: react to a guild-hall message without calling another colleague directly.
-        System.out.println("[Captain " + getName() + "] Received from " + from.getName() + " on " + topic + ": " + payload);
+        String sender = (from != null) ? from.getName() : "The Council";
+        System.out.println("[Captain " + getName() + "] Received from " + sender + " on " + topic + ": " + payload);
     }
 }

@@ -18,6 +18,7 @@ public class Healer extends GuildMember {
     @Override
     public void receive(String topic, GuildMember from, String payload) {
         // TODO: react to a guild-hall message without calling another colleague directly.
-        System.out.println("[Healer " + getName() + "] Preparing supplies for " + from.getName() + "'s request: " + payload);
+        String sender = (from != null) ? from.getName() : "The Council";
+        System.out.println("[Healer " + getName() + "] Preparing supplies for " + sender + "'s request: " + payload);
     }
 }
