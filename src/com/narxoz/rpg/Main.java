@@ -39,10 +39,6 @@ public class Main {
         Healer healer = new Healer("Elrond", hall);
         Captain captain = new Captain("Aragorn", hall);
 
-        hall.register(quartermaster);
-        hall.register(scout);
-        hall.register(healer);
-        hall.register(captain);
 
         // 4. Iterate the quest log with at least 2 different QuestIterator implementations.
         // 5. Dispatch coordinating messages through the mediator during quest planning.
