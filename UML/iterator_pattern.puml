@@ -1,0 +1,55 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface QuestIterator {
+    + hasNext(): boolean
+    + next(): Quest
+}
+
+class QuestLog {
+    - quests: List<Quest>
+    + add(quest: Quest): void
+    + snapshot(): List<Quest>
+    + ordered(): QuestIterator
+    + reverse(): QuestIterator
+    + priorityAtLeast(threshold: QuestPriority): QuestIterator
+}
+
+class OrderedQuestIterator {
+    - snapshot: List<Quest>
+    - cursor: int
+    + hasNext(): boolean
+    + next(): Quest
+}
+
+class ReverseQuestIterator {
+    - snapshot: List<Quest>
+    - cursor: int
+    + hasNext(): boolean
+    + next(): Quest
+}
+
+class PriorityQuestIterator {
+    - snapshot: List<Quest>
+    - cursor: int
+    + hasNext(): boolean
+    + next(): Quest
+}
+
+class RewardSortedQuestIterator {
+    - snapshot: List<Quest>
+    - cursor: int
+    + hasNext(): boolean
+    + next(): Quest
+}
+
+QuestLog ..> QuestIterator : creates >
+QuestIterator <|.. OrderedQuestIterator
+QuestIterator <|.. ReverseQuestIterator
+QuestIterator <|.. PriorityQuestIterator
+QuestIterator <|.. RewardSortedQuestIterator
+OrderedQuestIterator --> QuestLog : uses snapshot
+ReverseQuestIterator --> QuestLog : uses snapshot
+PriorityQuestIterator --> QuestLog : uses snapshot
+RewardSortedQuestIterator --> QuestLog : uses snapshot
+@enduml

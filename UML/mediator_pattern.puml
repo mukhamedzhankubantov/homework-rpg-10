@@ -1,0 +1,58 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface GuildMediator {
+    + register(member: GuildMember): void
+    + dispatch(topic: String, from: GuildMember, payload: String): void
+}
+
+class GuildHall {
+    - membersByTopic: Map<String, List<GuildMember>>
+    + register(member: GuildMember): void
+    + dispatch(topic: String, from: GuildMember, payload: String): void
+    # addSubscriber(topic: String, member: GuildMember): void
+}
+
+abstract class GuildMember {
+    - name: String
+    - mediator: GuildMediator
+    + getName(): String
+    + getMediator(): GuildMediator
+    + receive(topic: String, from: GuildMember, payload: String): void {abstract}
+}
+
+class Captain {
+    + issueOrder(topic: String, payload: String): void
+    + receive(topic: String, from: GuildMember, payload: String): void
+}
+
+class Scout {
+    + reportRoute(topic: String, payload: String): void
+    + receive(topic: String, from: GuildMember, payload: String): void
+}
+
+class Healer {
+    + prepareAid(topic: String, payload: String): void
+    + receive(topic: String, from: GuildMember, payload: String): void
+}
+
+class Quartermaster {
+    + requestSupplies(topic: String, payload: String): void
+    + receive(topic: String, from: GuildMember, payload: String): void
+}
+
+class Loremaster {
+    + shareLore(topic: String, payload: String): void
+    + receive(topic: String, from: GuildMember, payload: String): void
+}
+
+GuildMediator <|.. GuildHall
+GuildMember --> GuildMediator : communicates via
+GuildHall o-- GuildMember : coordinates >
+
+GuildMember <|-- Captain
+GuildMember <|-- Scout
+GuildMember <|-- Healer
+GuildMember <|-- Quartermaster
+GuildMember <|-- Loremaster
+@enduml
